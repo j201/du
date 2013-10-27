@@ -42,7 +42,7 @@ Note: `el` as a parameter means an HTMLElement.
 **du.clear(node)** - Removes all of the child nodes of a node.  
 **du.setChild(node, child)** - Removes all the child nodes of a node and appends `child` to it.
 
-**du.appendText(node, text)** - Appends the given text to `node`.
+**du.appendText(node, text)** - Appends the given text to `node`.  
 **du.setText(node, text)** - Removes all child text nodes from a node and appends the given text to it.
 
 ---
