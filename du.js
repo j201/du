@@ -1,0 +1,181 @@
+// DOM Utils (du) JS Library
+
+(function(window, undefined) {
+	var du, duCtor;
+	if (Object.create) {
+		du = Object.create(document);
+	} else {
+		duCtor = function(){};
+		duCtor.prototype = document;
+		du = new duCtor();
+	}
+
+	// Functions on document don't seem to work unless called with document as `this`
+	// IE8 doesn't seem to iterate through all of the functions using a for in loop, so I grabbed the function names from Firefox 25
+	// Looking for a better solution, but this should work for now
+	var docFunctions = ["getElementsByAttribute", "getElementsByAttributeNS", "addBroadcastListenerFor", "removeBroadcastListenerFor", "persist", "getBoxObjectFor", "loadOverlay", "getElementsByTagName", "getElementsByTagNameNS", "getElementsByClassName", "getElementById", "createElement", "createElementNS", "createDocumentFragment", "createTextNode", "createComment", "createProcessingInstruction", "importNode", "adoptNode", "createEvent", "createRange", "createNodeIterator", "createTreeWalker", "createCDATASection", "createAttribute", "createAttributeNS", "hasFocus", "releaseCapture", "mozSetImageElement", "mozCancelFullScreen", "mozExitPointerLock", "enableStyleSheetsForSet", "elementFromPoint", "caretPositionFromPoint", "querySelector", "querySelectorAll", "getAnonymousNodes", "getAnonymousElementByAttribute", "getBindingParent", "loadBindingDocument", "createExpression", "createNSResolver", "evaluate", "obsoleteSheet", "hasChildNodes", "insertBefore", "appendChild", "replaceChild", "removeChild", "normalize", "cloneNode", "isEqualNode", "compareDocumentPosition", "contains", "lookupPrefix", "lookupNamespaceURI", "isDefaultNamespace", "hasAttributes", "setUserData", "getUserData", "addEventListener", "removeEventListener", "dispatchEvent", "setEventHandler", "getEventHandler"];
+	for (var key, i = 0; i < docFunctions.length; i++) {
+		key = docFunctions[i];
+		if (document[key]) {
+			du[key] = (function(key) {
+				return function() {
+					return document[key].apply(document, arguments);
+				};
+			})(key);
+		}
+	}
+
+	// Equivalent to getElementById
+	du.id = function(id) {
+		return document.getElementById(id);
+	};
+
+	// Equivalent to getElementsByTagName
+	du.tag = function(elOrTag, tag) {
+		return arguments.length > 1 ?
+			elOrTag.getElementsByTagName(tag) :
+			document.getElementsByTagName(elOrTag);
+	};
+
+	// Equivalent to getElementsByClassName
+	du.className = function(elOrClassName, className) {
+		if (document.getElementsByClassName)
+			return arguments.length > 1 ?
+				elOrClassName.getElementsByClassName(className) :
+				document.getElementsByClassName(elOrClassName);
+		return arguments.length > 1 ?
+			elOrClassName.querySelectorAll(className.replace(/^\s*|[\s]+/g, " .")) :
+			document.querySelectorAll(elOrClassName.replace(/^\s*|[\s]+/g, " ."));
+	};
+
+	// Equivalent to querySelector
+	du.query = function(elOrSelector, selector) {
+		return arguments.length > 1 ?
+			elOrSelector.querySelector(selector) :
+			document.querySelector(elOrSelector);
+	};
+	// Equivalent to querySelectorAll
+	du.queryAll = function(elOrSelector, selector) {
+		return arguments.length > 1 ?
+			elOrSelector.querySelectorAll(selector) :
+			document.querySelectorAll(elOrSelector);
+	};
+
+	// Event code - adapted from mdn.io/addevent
+	/*if (!Event.prototype.preventDefault) {
+		Event.prototype.preventDefault=function() {
+			this.returnValue=false;
+		};
+	}
+	if (!Event.prototype.stopPropagation) {
+		Event.prototype.stopPropagation=function() {
+			this.cancelBubble=true;
+		};
+	}*/
+	if (!Element.prototype.addEventListener) {
+		var eventListeners=[];
+
+		var addEventListener=function(type, listener /*, useCapture (will be ignored) */) {
+			var self=this;
+			var wrapper=function(e) {
+				e.target=e.srcElement;
+				e.currentTarget=self;
+				if (listener.handleEvent) {
+					listener.handleEvent(e);
+				} else {
+					listener.call(self,e);
+				}
+			};
+			if (type=="DOMContentLoaded") {
+				var wrapper2=function(e) {
+					if (document.readyState=="complete") {
+						wrapper(e);
+					}
+				};
+				document.attachEvent("onreadystatechange",wrapper2);
+				eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper2});
+
+				if (document.readyState=="complete") {
+					var e=new Event();
+					e.srcElement=window;
+					wrapper2(e);
+				}
+			} else {
+				this.attachEvent("on"+type,wrapper);
+				eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper});
+			}
+		};
+		var removeEventListener=function(type, listener /*, useCapture (will be ignored) */) {
+			var counter=0;
+			while (counter<eventListeners.length) {
+				var eventListener=eventListeners[counter];
+				if (eventListener.object==this && eventListener.type==type && eventListener.listener==listener) {
+					if (type=="DOMContentLoaded") {
+						this.detachEvent("onreadystatechange",eventListener.wrapper);
+					} else {
+						this.detachEvent("on"+type,eventListener.wrapper);
+					}
+					break;
+				}
+				++counter;
+			}
+		};
+	}
+	du.event = function(target, type, listener, useCapture) {
+		if (Element.prototype.addEventListener) {
+			target.addEventListener(type, listener, useCapture || false);
+		} else {
+			addEventListener.call(target, type, listener);
+		}
+	};
+	du.load = function(listener) {
+		du.event(window, "load", listener);
+	};
+	du.click = function(el, listener) {
+		du.event(el, "click", listener);
+	}
+	du.rmEvent = function(target, type, listener, useCapture) {
+		if (Element.prototype.removeEventListener) {
+			target.removeEventListener(type, listener, useCapture || false);
+		} else {
+			removeEventListener.call(target, type, listener);
+		}
+	};
+
+	// Removes all children from a node
+	du.clear = function(node) {
+		while(node.firstChild) {
+			node.removeChild(node.firstChild);
+		}
+	};
+	
+	// Clears a node and appends the given child
+	du.setChild = function(node, child) {
+		du.clear(node);
+		node.appendChild(child);
+	};
+
+	// Appends a text node with the given text to a node
+	du.appendText = function(node, text) {
+		return node.appendChild(document.createTextNode(text));
+	};
+
+	// Removes all child text nodes and appends the given text
+	du.setText = function(node, text) {
+		var children = node.childNodes;
+		for (var i = 0; i < children.length; i++) {
+			if (children[i].nodeType === 3) {
+				node.removeChild(children[i]);
+				i--;
+			}
+		}
+		du.appendText(node, text);
+	};
+
+	if (typeof module !== 'undefined' && module !== null && module.exports)
+		module.exports = du;
+	else if (typeof define == 'function' && typeof define.amd == 'object')
+		define(function(){ return du; });
+	else
+		window.du = du;
+})(this);

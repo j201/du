@@ -1,0 +1,37 @@
+<!-- just a simple HTML page for testing du.js -->
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>du.js test</title>
+	</head>
+	<body>
+		<div id="a"></div>
+		<div id="b"></div>
+		<div class="c"></div>
+		<div id="d"></div>
+		<div id="e"></div>
+		<div id="f">mouseover me</div>
+		<div id="g">click me</div>
+		<div id="h">if this is here, clear isn't working.</div>
+		<div id="i"></div>
+		<div id="j">appendText</div>
+	</body>
+	<script src="du.js"></script>
+	<script>
+		du.setText(du.id('a'), 'id and setText tested.');
+		du.setText(du.tag('div')[1], 'tag tested.');
+		du.setText(du.className('c')[0], 'className tested.');
+		du.setText(du.query('#d'), 'query tested.');
+		du.setText(du.queryAll('#e')[0], 'queryAll tested.');
+		du.event(du.id('f'), 'mouseover', function() { console.log('event tested.'); });
+		var listener = function() { console.log('if this shows up, rmEvent isn\'t working.'); };
+		du.event(du.id('g'), 'mouseover', listener);
+		du.rmEvent(du.id('g'), 'mouseover', listener);
+		du.load(function() { console.log('load tested.'); });
+		du.click(du.id('g'), function() { console.log('click tested.'); });
+		du.clear(du.id('h'));
+		du.setChild(du.id('i'), du.createTextNode('setChild tested.'));
+		du.appendText(du.id('j'), ' tested.');
+	</script>
+</html>
