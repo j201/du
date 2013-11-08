@@ -157,8 +157,22 @@
 
 	// Appends a text node with the given text to a node
 	du.appendText = function(node, text) {
-		return node.appendChild(document.createTextNode(text));
+		node.appendChild(document.createTextNode(text));
 	};
+
+	// Prepends a child node to a node
+	du.prepend = function(node, el) {
+		node.insertBefore(el, node.firstChild);
+	};
+	// Equivalent to node.appendChild
+	du.append = function(node, el) {
+		node.appendChild(el);
+	};
+
+	// Inserts a child node after a given child node
+	du.insertAfter = function(node, newEl, refEl) {
+		node.insertBefore(newEl, refEl.nextSibling);
+	}
 
 	// Removes all child text nodes and appends the given text
 	du.setText = function(node, text) {
@@ -171,6 +185,15 @@
 		}
 		du.appendText(node, text);
 	};
+
+	// Does a simple asynx XMLHTTPRequest
+	du.xhr = function(method, url, options, callback) {
+		if (arguments.length < 4) {
+			callback = options;
+			options = {};
+		}
+
+
 
 	if (typeof module !== 'undefined' && module !== null && module.exports)
 		module.exports = du;
