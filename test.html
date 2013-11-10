@@ -16,7 +16,9 @@
 		<div id="h">if this is here, clear isn't working.</div>
 		<div id="i"></div>
 		<div id="j">appendText</div>
-	</body>
+		<div id="k">tested.</div>
+		<div id="l">append</div>
+		<div id="m"><span id="ma">insertAfter </span><span>.</span></div>
 	<script src="du.js"></script>
 	<script>
 		du.setText(du.id('a'), 'id and setText tested.');
@@ -33,5 +35,9 @@
 		du.clear(du.id('h'));
 		du.setChild(du.id('i'), du.createTextNode('setChild tested.'));
 		du.appendText(du.id('j'), ' tested.');
+		du.prepend(du.id('k'), du.createTextNode('prepend '));
+		du.append(du.id('l'), du.createTextNode(' tested.'));
+		du.insertAfter(du.id('m'), du.textNode('and textNode tested'), du.id('ma'));
 	</script>
+	</body>
 </html>

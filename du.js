@@ -155,6 +155,11 @@
 		node.appendChild(child);
 	};
 
+	// Equivalent to document.createTextNode
+	du.textNode = function(text) {
+		return document.createTextNode(text);
+	};
+
 	// Appends a text node with the given text to a node
 	du.appendText = function(node, text) {
 		node.appendChild(document.createTextNode(text));
@@ -185,15 +190,6 @@
 		}
 		du.appendText(node, text);
 	};
-
-	// Does a simple asynx XMLHTTPRequest
-	du.xhr = function(method, url, options, callback) {
-		if (arguments.length < 4) {
-			callback = options;
-			options = {};
-		}
-
-
 
 	if (typeof module !== 'undefined' && module !== null && module.exports)
 		module.exports = du;
