@@ -44,8 +44,8 @@
 				elOrClassName.getElementsByClassName(className) :
 				document.getElementsByClassName(elOrClassName);
 		return arguments.length > 1 ?
-			elOrClassName.querySelectorAll(className.replace(/^\s*|[\s]+/g, " .")) :
-			document.querySelectorAll(elOrClassName.replace(/^\s*|[\s]+/g, " ."));
+			elOrClassName.querySelectorAll(className.replace(/^\s*|\s+(?=\S)/g, ".")) :
+			document.querySelectorAll(elOrClassName.replace(/^\s*|\s+(?=\S)/g, "."));
 	};
 
 	// Equivalent to querySelector
