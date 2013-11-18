@@ -144,15 +144,17 @@
 
 	// Removes all children from a node
 	du.clear = function(node) {
+		var removed = [];
 		while(node.firstChild) {
-			node.removeChild(node.firstChild);
+			removed.push(node.removeChild(node.firstChild));
 		}
+		return removed;
 	};
 	
 	// Clears a node and appends the given child
 	du.setChild = function(node, child) {
 		du.clear(node);
-		node.appendChild(child);
+		return node.appendChild(child);
 	};
 
 	// Equivalent to document.createTextNode
@@ -162,21 +164,21 @@
 
 	// Appends a text node with the given text to a node
 	du.appendText = function(node, text) {
-		node.appendChild(document.createTextNode(text));
+		return node.appendChild(document.createTextNode(text));
 	};
 
 	// Prepends a child node to a node
 	du.prepend = function(node, el) {
-		node.insertBefore(el, node.firstChild);
+		return node.insertBefore(el, node.firstChild);
 	};
 	// Equivalent to node.appendChild
 	du.append = function(node, el) {
-		node.appendChild(el);
+		return node.appendChild(el);
 	};
 
 	// Inserts a child node after a given child node
 	du.insertAfter = function(node, newEl, refEl) {
-		node.insertBefore(newEl, refEl.nextSibling);
+		return node.insertBefore(newEl, refEl.nextSibling);
 	}
 
 	// Removes all child text nodes and appends the given text
