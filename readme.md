@@ -34,6 +34,7 @@ Note: `el` as a parameter means an HTMLElement.
 **du.queryAll(el, selector)** - Equivalent to `el.querySelectorAll(selector)`
 
 **du.event(target, type, listener, [useCapture])** - Equivalent to `target.addEventListener(type, listener, useCapture)`. Note that `useCapture` will not do anything on browsers that don't support `addEventListener`.  
+**du.event(type, listener, [useCapture])** - Equivalent to `window.addEventListener(type, listener, useCapture)`.
 **du.rmEvent(target, type, listener, [useCapture])** - Equivalent to `target.removeEventListener(type, listener, useCapture)`
 
 **du.load(listener)** - Equivalent to `document.addEventListener(window, "load", listener)`  

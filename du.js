@@ -1,4 +1,6 @@
 // DOM Utils (du) JS Library
+// https://github.com/j201/du
+// ©2013 j201 
 
 (function(window, undefined) {
 	var du, duCtor;
@@ -122,6 +124,9 @@
 		};
 	}
 	du.event = function(target, type, listener, useCapture) {
+		// If a target isn't passed (that is, if the first argument is a string), run the event on window
+		if (Object.prototype.toString.call(target) === '[object String]')
+			return du.event(window, target, type, listener);
 		if (Element.prototype.addEventListener) {
 			target.addEventListener(type, listener, useCapture || false);
 		} else {
@@ -199,4 +204,4 @@
 		define(function(){ return du; });
 	else
 		window.du = du;
-})(this);
+})(typeof window !== 'undefined' ? window : this);
