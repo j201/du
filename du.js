@@ -1,6 +1,7 @@
 // DOM Utils (du) JS Library
 // https://github.com/j201/du
 // ©2013 j201 
+/* jshint loopfunc:true */
 
 (function(window, undefined) {
 	var du, duCtor;
@@ -142,7 +143,7 @@
 	};
 	du.click = function(el, listener) {
 		du.event(el, "click", listener);
-	}
+	};
 	du.rmEvent = function(target, type, listener, useCapture) {
 		if (Element.prototype.removeEventListener) {
 			target.removeEventListener(type, listener, useCapture || false);
@@ -190,7 +191,7 @@
 	// Inserts a child node after a given child node
 	du.insertAfter = function(node, newEl, refEl) {
 		return node.insertBefore(newEl, refEl.nextSibling);
-	}
+	};
 
 	// Removes all child text nodes and appends the given text
 	du.setText = function(node, text) {
@@ -213,9 +214,10 @@
 	};
 
 	du.rmClass = function(el /*, ...classes */) {
-		el.className = el.className.replace(new RegExp("\\b(" +
-			Array.prototype.slice.call(arguments, 1).join("|").replace("\\", "\\\\") +
-			")\\b", "g"));
+		if (el.className)
+			el.className = el.className.replace(new RegExp("\\b(" +
+						Array.prototype.slice.call(arguments, 1).join("|").replace("\\", "\\\\") +
+						")\\b", "g"), '');
 	};
 
 	if (typeof module !== 'undefined' && module !== null && module.exports)
