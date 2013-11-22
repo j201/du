@@ -27,6 +27,8 @@
 		}
 	}
 
+	///// QUERIES /////
+
 	// Equivalent to getElementById
 	du.id = function(id) {
 		return document.getElementById(id);
@@ -62,6 +64,8 @@
 			elOrSelector.querySelectorAll(selector) :
 			document.querySelectorAll(elOrSelector);
 	};
+
+	///// EVENTS //////
 
 	// Event code - adapted from mdn.io/addevent
 	/*if (!Event.prototype.preventDefault) {
@@ -147,6 +151,8 @@
 		}
 	};
 
+	///// DOM MUTATIONS /////
+
 	// Removes all children from a node
 	du.clear = function(node) {
 		var removed = [];
@@ -196,6 +202,20 @@
 			}
 		}
 		du.appendText(node, text);
+	};
+
+	///// CSS /////
+	
+	du.addClass = function(el /*, ...classes */) {
+		for (var i = 1; i < arguments.length; i++) {
+			el.className += ' ' + arguments[i];
+		}
+	};
+
+	du.rmClass = function(el /*, ...classes */) {
+		el.className = el.className.replace(new RegExp("\\b(" +
+			Array.prototype.slice.call(arguments, 1).join("|").replace("\\", "\\\\") +
+			")\\b", "g"));
 	};
 
 	if (typeof module !== 'undefined' && module !== null && module.exports)

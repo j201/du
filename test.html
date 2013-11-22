@@ -4,6 +4,11 @@
 <html>
 	<head>
 		<title>du.js test</title>
+		<style type="text/css">
+			.c1 { background-color: red; }
+			.c2 { background-color: blue; }
+			.c3 { color: yellow; }
+		</style>
 	</head>
 	<body>
 		<div id="a"></div>
@@ -19,6 +24,8 @@
 		<div id="k">tested.</div>
 		<div id="l">append</div>
 		<div id="m"><span id="ma">insertAfter </span><span>.</span></div>
+		<div id="n">addClass: this should be yellow text on blue.</div>
+		<div id="o" class="c1 c2 c3">removeClass: this should be black text on red.</div>
 	<script src="du.js"></script>
 	<script>
 		du.setText(du.id('a'), 'id and setText tested.');
@@ -38,6 +45,8 @@
 		du.prepend(du.id('k'), du.createTextNode('prepend '));
 		du.append(du.id('l'), du.createTextNode(' tested.'));
 		du.insertAfter(du.id('m'), du.textNode('and textNode tested'), du.id('ma'));
+		du.addClass(du.id('n'), 'c2', 'c3');
+		du.rmClass(du.id('o'), 'c2', 'c3');
 	</script>
 	</body>
 </html>
