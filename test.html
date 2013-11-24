@@ -24,8 +24,8 @@
 		du.setText(du.id('a'), 'id and setText tested.');
 		du.setText(du.tag('div')[1], 'tag tested.');
 		du.setText(du.className('c')[0], 'className tested.');
-		du.setText(du.query('#d'), 'query tested.');
-		du.setText(du.queryAll('#e')[0], 'queryAll tested.');
+		du.setText(du.qs('#d'), 'query tested.');
+		du.setText(du.qsa('#e')[0], 'queryAll tested.');
 		du.event(du.id('f'), 'mouseover', function() { console.log('event tested.'); });
 		var listener = function() { console.log('if this shows up, rmEvent isn\'t working.'); };
 		du.event(du.id('g'), 'mouseover', listener);

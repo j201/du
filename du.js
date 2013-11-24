@@ -51,13 +51,13 @@
 	};
 
 	// Equivalent to querySelector
-	du.query = function(elOrSelector, selector) {
+	du.qs = function(elOrSelector, selector) {
 		return arguments.length > 1 ?
 			elOrSelector.querySelector(selector) :
 			document.querySelector(elOrSelector);
 	};
 	// Equivalent to querySelectorAll
-	du.queryAll = function(elOrSelector, selector) {
+	du.qsa = function(elOrSelector, selector) {
 		return arguments.length > 1 ?
 			elOrSelector.querySelectorAll(selector) :
 			document.querySelectorAll(elOrSelector);

@@ -28,10 +28,10 @@ Note: `el` as a parameter means an HTMLElement.
 **du.className(className)** - Equivalent to `document.getElementsByClassName(className)`. `className` was used instead of `class` to avoid reserved word errors in IE8.  
 **du.className(el, className)** - Equivalent to `document.getElementsByClassName(className)`
 
-**du.query(selector)** - Equivalent to `document.querySelector(selector)`  
-**du.query(el, selector)** - Equivalent to `el.querySelector(selector)`  
-**du.queryAll(selector)** - Equivalent to `document.querySelectorAll(selector)`  
-**du.queryAll(el, selector)** - Equivalent to `el.querySelectorAll(selector)`
+**du.qa(selector)** - Equivalent to `document.querySelector(selector)`  
+**du.qa(el, selector)** - Equivalent to `el.querySelector(selector)`  
+**du.qsa(selector)** - Equivalent to `document.querySelectorAll(selector)`  
+**du.qsa(el, selector)** - Equivalent to `el.querySelectorAll(selector)`
 
 **du.event(target, type, listener, [useCapture])** - Equivalent to `target.addEventListener(type, listener, useCapture)`. Note that `useCapture` will not do anything on browsers that don't support `addEventListener`.  
 **du.event(type, listener, [useCapture])** - Equivalent to `window.addEventListener(type, listener, useCapture)`.  
