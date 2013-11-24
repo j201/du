@@ -50,7 +50,10 @@ Note: `el` as a parameter means an HTMLElement.
 **du.appendText(node, text)** - Appends the given text to `node`.  
 **du.setText(node, text)** - Removes all child text nodes from a node and appends the given text to it.
 
-**du.insertAfter(node, newNode, referenceNode)** - Inserts `newNode` as a child element of `node` after `referenceNode`
+**du.insertAfter(node, newNode, referenceNode)** - Inserts `newNode` as a child element of `node` after `referenceNode`.
+
+**du.addClass(el, ...classes)** - Adds the given classes to an element.  
+**du.rmClass(el, ...classes)** - Removes the given classes from an element.
 
 ---
 

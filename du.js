@@ -1,6 +1,7 @@
 // DOM Utils (du) JS Library
 // https://github.com/j201/du
 // ©2013 j201 
+/* jshint loopfunc:true */
 
 (function(window, undefined) {
 	var du, duCtor;
@@ -26,6 +27,8 @@
 			})(key);
 		}
 	}
+
+	///// QUERIES /////
 
 	// Equivalent to getElementById
 	du.id = function(id) {
@@ -62,6 +65,8 @@
 			elOrSelector.querySelectorAll(selector) :
 			document.querySelectorAll(elOrSelector);
 	};
+
+	///// EVENTS //////
 
 	// Event code - adapted from mdn.io/addevent
 	/*if (!Event.prototype.preventDefault) {
@@ -138,7 +143,7 @@
 	};
 	du.click = function(el, listener) {
 		du.event(el, "click", listener);
-	}
+	};
 	du.rmEvent = function(target, type, listener, useCapture) {
 		if (Element.prototype.removeEventListener) {
 			target.removeEventListener(type, listener, useCapture || false);
@@ -146,6 +151,8 @@
 			removeEventListener.call(target, type, listener);
 		}
 	};
+
+	///// DOM MUTATIONS /////
 
 	// Removes all children from a node
 	du.clear = function(node) {
@@ -184,7 +191,7 @@
 	// Inserts a child node after a given child node
 	du.insertAfter = function(node, newEl, refEl) {
 		return node.insertBefore(newEl, refEl.nextSibling);
-	}
+	};
 
 	// Removes all child text nodes and appends the given text
 	du.setText = function(node, text) {
@@ -196,6 +203,21 @@
 			}
 		}
 		du.appendText(node, text);
+	};
+
+	///// CSS /////
+	
+	du.addClass = function(el /*, ...classes */) {
+		for (var i = 1; i < arguments.length; i++) {
+			el.className += ' ' + arguments[i];
+		}
+	};
+
+	du.rmClass = function(el /*, ...classes */) {
+		if (el.className)
+			el.className = el.className.replace(new RegExp("\\b(" +
+						Array.prototype.slice.call(arguments, 1).join("|").replace("\\", "\\\\") +
+						")\\b", "g"), '');
 	};
 
 	if (typeof module !== 'undefined' && module !== null && module.exports)
