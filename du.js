@@ -28,6 +28,22 @@
 		}
 	}
 
+	///// UTILITIES /////
+
+	// Converts an arrayLike to an array
+	du.toArray = function(arrayLike) {
+		return Array.prototype.slice.call(arrayLike);
+	};
+
+	// More or less equivalent to Array#map but works on an array-like and iterates to the value of .length
+	du.each = function(arrayLike, fn) {
+		var result = [];
+		for (var i = 0; i < arrayLike.length; i++) {
+			result.push(fn(arrayLike[i], i, arrayLike));
+		}
+		return result;
+	};
+
 	///// QUERIES /////
 
 	// Equivalent to getElementById

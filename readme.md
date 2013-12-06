@@ -20,6 +20,8 @@ First of all, `du` inherits from `document`, so the properties of `document` can
 
 Note: `el` as a parameter means an HTMLElement.
 
+####Queries
+
 **du.id(id)** - Equivalent to `document.getElementById(id)`  
 
 **du.tag(tag)** - Equivalent to `document.getElementsByTagName(tag)`  
@@ -33,12 +35,16 @@ Note: `el` as a parameter means an HTMLElement.
 **du.qsa(selector)** - Equivalent to `document.querySelectorAll(selector)`  
 **du.qsa(el, selector)** - Equivalent to `el.querySelectorAll(selector)`
 
+####Events
+
 **du.event(target, type, listener, [useCapture])** - Equivalent to `target.addEventListener(type, listener, useCapture)`. Note that `useCapture` will not do anything on browsers that don't support `addEventListener`.  
 **du.event(type, listener, [useCapture])** - Equivalent to `window.addEventListener(type, listener, useCapture)`.  
 **du.rmEvent(target, type, listener, [useCapture])** - Equivalent to `target.removeEventListener(type, listener, useCapture)`
 
 **du.load(listener)** - Equivalent to `document.addEventListener(window, "load", listener)`  
 **du.click(target, listener)** - Equivalent to `target.addEventListener("click", listener)`
+
+####DOM Mutations
 
 **du.clear(node)** - Removes all of the child nodes of a node.  
 **du.setChild(node, child)** - Removes all the child nodes of a node and appends `child` to it.
@@ -52,8 +58,16 @@ Note: `el` as a parameter means an HTMLElement.
 
 **du.insertAfter(node, newNode, referenceNode)** - Inserts `newNode` as a child element of `node` after `referenceNode`.
 
+####CSS
+
 **du.addClass(el, ...classes)** - Adds the given classes to an element.  
 **du.rmClass(el, ...classes)** - Removes the given classes from an element.
+
+####Utilities
+
+**du.toArray(arrayLike)** - Converts an array-like (e.g., a NodeList) to an array
+
+**du.each(arrayLike, fn)** - Iterates through the elements of an array-like or an array, calling `fn` on each element and returning an array of the results. `fn` is called with the current element, the index, and the array-like as arguments.
 
 ---
 
