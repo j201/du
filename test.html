@@ -38,6 +38,7 @@
 		du.event(du.id('g'), 'mouseover', listener);
 		du.rmEvent(du.id('g'), 'mouseover', listener);
 		du.load(function() { console.log('load tested.'); });
+		du.ready(function() { console.log('ready tested.'); });
 		du.click(du.id('g'), function() { console.log('click tested.'); });
 		du.clear(du.id('h'));
 		du.setChild(du.id('i'), du.createTextNode('setChild tested.'));

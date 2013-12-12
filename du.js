@@ -119,7 +119,7 @@
 				eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper2});
 
 				if (document.readyState=="complete") {
-					var e=new Event();
+					var e = (document.createEvent || document.createEventObject)('DOMContentLoaded');
 					e.srcElement=window;
 					wrapper2(e);
 				}
@@ -166,6 +166,11 @@
 		} else {
 			removeEventListener.call(target, type, listener);
 		}
+	};
+
+	// Equivalent to the DOMContentLoaded event
+	du.ready = function(listener) {
+		du.event(window, "DOMContentLoaded", listener);
 	};
 
 	///// DOM MUTATIONS /////
