@@ -53,7 +53,8 @@ Note: `el` as a parameter means an HTMLElement.
 **du.setChild(node, child)** - Removes all the child nodes of a node and appends `child` to it
 
 **du.prepend(node, child)** - Inserts `child` as the node's first child  
-**du.append(node, child)** - Equivalent to `node.appendChild(child)`
+**du.append(node, child)** - Equivalent to `node.appendChild(child)`  
+**du.remove(node)** - Removes the given node
 
 **du.textNode(text)** - Equivalent to `document.createTextNode(text)`  
 **du.appendText(node, text)** - Appends the given text to `node`  
@@ -79,12 +80,6 @@ Note: `el` as a parameter means an HTMLElement.
 - Moar functions, in particular AJAX and CSS handling
 - Automated documentation
 - Automated testing
-
----
-
-###Compatibility
-
-`du` is compatible with IE8 and newer (and Firefox and Chrome, of course).
 
 ---
 

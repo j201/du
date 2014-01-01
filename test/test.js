@@ -152,6 +152,12 @@ describe('du', function() {
 			assert(div.innerHTML === 'barfoo');
 		});
 	});
+	describe('.remove', function() {
+		it('should remove a node', function() {
+			du.remove(du.id('remove-test'));
+			assert(du.id('remove-test') === null);
+		});
+	});
 	describe('.insertAfter', function() {
 		it('should insert a node after a reference node', function() {
 			var div = du.id('insertAfter-test');

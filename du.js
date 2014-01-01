@@ -216,6 +216,10 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 	du.append = function(node, el) {
 		return node.appendChild(el);
 	};
+	// Removes the given node
+	du.remove = function(node) {
+		return node.parentNode.removeChild(node);
+	};
 
 	// Inserts a child node after a given child node
 	du.insertAfter = function(node, newEl, refEl) {
