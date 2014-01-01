@@ -147,7 +147,7 @@
 	du.event = function(target, type, listener, useCapture) {
 		// If a target isn't passed (that is, if the first argument is a string), run the event on window
 		if (Object.prototype.toString.call(target) === '[object String]')
-			return du.event(window, target, type, listener);
+			return du.event(window, target, type, listener, useCapture);
 		if (Element.prototype.addEventListener) {
 			target.addEventListener(type, listener, useCapture || false);
 		} else {
@@ -158,9 +158,14 @@
 		du.event(window, "load", listener);
 	};
 	du.click = function(el, listener) {
-		du.event(el, "click", listener);
+		if (arguments.length < 2)
+			du.event(window, "click", el);
+		else
+			du.event(el, "click", listener);
 	};
 	du.rmEvent = function(target, type, listener, useCapture) {
+		if (Object.prototype.toString.call(target) === '[object String]')
+			return du.rmEvent(window, target, type, listener, useCapture);
 		if (Element.prototype.removeEventListener) {
 			target.removeEventListener(type, listener, useCapture || false);
 		} else {
