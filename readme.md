@@ -75,12 +75,4 @@ Note: `el` as a parameter means an HTMLElement.
 
 ---
 
-###Todo
-
-- Moar functions, in particular AJAX and CSS handling
-- Automated documentation
-- Automated testing
-
----
-
 ©2013 j201. Released under the [MIT License](http://opensource.org/licenses/MIT).
