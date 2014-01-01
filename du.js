@@ -1,6 +1,9 @@
-// DOM Utils (du) JS Library
-// https://github.com/j201/du
-// ©2013 j201 
+/*
+DOM Utils (du) JS Library
+https://github.com/j201/du
+©2013 j201
+Licensed under the MIT Licence: http://opensource.org/licenses/MIT
+*/
 /* jshint loopfunc:true */
 
 (function(window, undefined) {
