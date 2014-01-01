@@ -1,5 +1,5 @@
 {
-	"name": "du",
+	"name": "du-dom",
 	"version": "0.0.0",
 	"description": "The DOM library for coders who don't need a DOM library.",
 	"main": "du.js",
@@ -19,6 +19,7 @@
 	"keywords": [
 		"DOM",
 		"du",
+		"browser",
 		"css"
 	],
 	"author": "j201 <j201.alex@gmail.com> (http://j201.github.io/)",
