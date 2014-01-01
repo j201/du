@@ -26,5 +26,15 @@
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/j201/du/issues"
-	}
+	},
+	"testling" : {
+        "html" : "test/test.html",
+        "browsers" : [
+            "ie/8..latest",
+            "chrome/latest",
+            "firefox/latest",
+            "safari/latest",
+            "opera/latest"
+        ]
+    }
 }

@@ -6,6 +6,8 @@
 
 `du` is still a work in progress with a very unstable API. Feel free to make comments and recommend changes at this time.
 
+[![browser support](https://ci.testling.com/j201/du.png)](http://ci.testling.com/j201/du)
+
 ---
 
 ###Background
@@ -16,7 +18,7 @@ I started out in web development using vanilla DOM methods. It was useful to lea
 
 ###API
 
-First of all, `du` inherits from `document`, so the properties of `document` can be accessed as properties of `du`. For example, `du.body` is a quicker way of accessing `document.body`. (Note that modifying these properties will not modify the corresponding `document` properties.)
+First of all, `du` inherits from `document`, so the functions on `document` can be accessed as properties of `du`. For example, `du.createElement` is a quicker way of accessing `document.createElement`. (Note that modifying these properties will not modify the corresponding `document` properties. Also, IE doesn't like accessing non-function properties like `document.body` from objects other than `document`, so those won't work in IE.)
 
 Note: `el` as a parameter means an HTMLElement.
 

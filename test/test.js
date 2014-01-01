@@ -1,7 +1,17 @@
+var testDivHTML;
+
 describe('du', function() {
-	it('should inherit properties from document', function() {
-		assert(du.getElementsByAttribute === document.getElementsByAttribute);
-		assert(du.body === document.body);
+	before(function() {
+		// Reset the test div if changed
+		if (!testDivHTML)
+			testDivHTML = document.getElementById('test').innerHTML;
+		else
+			document.getElementById('test').innerHTML = testDivHTML;
+	});
+
+	it('should inherit or have copied over the functions from document', function() {
+		assert(du.getElementById('a') === document.getElementById('a'));
+		// assert(du.body === document.body); // Note: this always fails on IE because IE expects non-function properties of document to stay on document.
 	});
 	
 	describe('.toArray', function() {
@@ -173,6 +183,6 @@ describe('du', function() {
 	});
 	
 	after(function() {
-		du.clear(du.id('test'));
+		document.getElementById('test').innerHTML = '';
 	});
 });

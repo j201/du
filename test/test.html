@@ -26,11 +26,17 @@
 <script src="../du.js"></script>
 <script src="assert.js"></script>
 <script src="mocha.js"></script>
-<script>mocha.setup('bdd');</script>
+<script>
+mocha.setup('bdd');
+</script>
 <script src="test.js"></script>
 <script>
 mocha.checkLeaks();
-mocha.run();
+mocha.run(function() {
+	mocha.reporter('tap');
+	mocha.run();
+});
 </script>
+
 </body>
 </html>
