@@ -33,12 +33,11 @@ mocha.setup('bdd');
 <script src="test.js"></script>
 <script>
 mocha.checkLeaks();
-/*mocha.run(function() {
+console.log('start test');
+mocha.run(function() {
 	mocha.reporter('tap');
 	mocha.run();
-});*/
-mocha.reporter('tap');
-mocha.run();
+});
 </script>
 
 </body>

@@ -7,7 +7,7 @@
 		"test": "test"
 	},
 	"scripts": {
-		"prepublish": "\"./node_modules/.bin/uglifyjs du.js\" -o du.min.js --source-map du.min.js.map --comments /©/"
+		"prepublish": "\"./node_modules/.bin/uglifyjs\" du.js -o du.min.js --source-map du.min.js.map --comments /©/"
 	},
 	"devDependencies": {
 		"uglify-js": "2.4.x"
