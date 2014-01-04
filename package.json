@@ -1,6 +1,6 @@
 {
 	"name": "du-dom",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "The DOM library for coders who don't need a DOM library.",
 	"main": "du.js",
 	"directories": {

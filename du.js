@@ -103,9 +103,13 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 
 		var addEventListener=function(type, listener /*, useCapture (will be ignored) */) {
 			var self=this;
-			var wrapper=function(e) {
+			var cancelBubble = false;
+			var wrapper = function(e) {
 				e.target=e.srcElement;
 				e.currentTarget=self;
+				e.stopPropagation = function() {
+					cancelBubble = true;
+				};
 				if (listener.handleEvent) {
 					listener.handleEvent(e);
 				} else {
@@ -128,7 +132,15 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 				}
 			} else {
 				this.attachEvent("on"+type,wrapper);
-				eventListeners.push({object:this,type:type,listener:listener,wrapper:wrapper});
+				var manualBubble;
+				if (this === window && eventBubbles(type)) { // attachEvent doesn't bubble to window, so we have to do it manually
+					manualBubble = function(e) {
+						if (!cancelBubble)
+							wrapper(e);
+					};
+					document.attachEvent('on' + type, manualBubble);
+				}
+				eventListeners.push({object: this, type: type, listener: listener, wrapper: wrapper, manualBubble: manualBubble});
 			}
 		};
 		var removeEventListener=function(type, listener /*, useCapture (will be ignored) */) {
@@ -140,11 +152,17 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 						this.detachEvent("onreadystatechange",eventListener.wrapper);
 					} else {
 						this.detachEvent("on"+type,eventListener.wrapper);
+						if (eventListener.manualBubble)
+							document.detachEvent("on" + type, eventListener.manualBubble);
 					}
 					break;
 				}
 				++counter;
 			}
+		};
+		var nonBubblingEventTypes = {DOMNodeRemovedFromDocument: null, DOMNodeInsertedIntoDocument: null, load: null, unload: null, focus: null, blur: null, abort: null, error: null, mouseenter: null, mouseleave: null, resize: null, scroll: null};
+		var eventBubbles = function(type) {
+			return !(type in nonBubblingEventTypes);
 		};
 	}
 	du.event = function(target, type, listener, useCapture) {
