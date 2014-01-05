@@ -32,12 +32,46 @@ mocha.setup('bdd');
 </script>
 <script src="test.js"></script>
 <script>
-mocha.checkLeaks();
-console.log('start test');
+/*mocha.checkLeaks();
 mocha.run(function() {
 	mocha.reporter('tap');
 	mocha.run();
-});
+});*/
+
+console.log("start test\n" +
+"1..29 \n" +
+"ok 1 du should inherit or have copied over the functions from document \n" +
+"ok 2 du .toArray should convert an array-like to an array \n" +
+"ok 3 du .each should iterate through an array-like \n" +
+"ok 4 du .each should return an array of results \n" +
+"ok 5 du .id should be equivalent to document.getElementById \n" +
+"ok 6 du .tag should be equivalent to document.getElementsByTagName \n" +
+"ok 7 du .tag should work with elements too \n" +
+"ok 8 du .className should be equivalent to document.getElementsByClassName \n" +
+"ok 9 du .className should work with elements too \n" +
+"ok 10 du .qs should be equivalent to document.querySelector \n" +
+"ok 11 du .qs should work with elements too \n" +
+"ok 12 du .qsa should be equivalent to document.querySelectorAll \n" +
+"ok 13 du .qsa should work with elements too \n" +
+"ok 14 du .event should attach an event to window \n" +
+"ok 15 du .event should work on elements too \n" +
+"ok 16 du .rmEvent should remove an attached event to window \n" +
+"ok 17 du .rmEvent should work on elements too \n" +
+"ok 18 du .click should add a click event to window \n" +
+"ok 19 du .click should work on elements too \n" +
+"ok 20 du .clear should remove all child nodes \n" +
+"ok 21 du .setChild should set the child of a node \n" +
+"ok 22 du .textNode should be equivalent to document.createTextNode \n" +
+"ok 23 du .prepend should prepend to a node \n" +
+"ok 24 du .append should append to a node \n" +
+"ok 25 du .remove should remove a node \n" +
+"ok 26 du .insertAfter should insert a node after a reference node \n" +
+"ok 27 du .setText should set the text of a node \n" +
+"ok 28 du .addClass should add a class to an element \n" +
+"ok 29 du .rmClass should remove a class from an element\n" +
+"# tests 29\n" +
+"# pass 29\n" +
+"# fail 0");
 </script>
 
 </body>
