@@ -227,12 +227,12 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 	};
 
 	// Prepends a child node to a node
-	du.prepend = function(node, el) {
-		return node.insertBefore(el, node.firstChild);
+	du.prepend = function(node, child) {
+		return node.insertBefore(child, node.firstChild);
 	};
 	// Equivalent to node.appendChild
-	du.append = function(node, el) {
-		return node.appendChild(el);
+	du.append = function(node, child) {
+		return node.appendChild(child);
 	};
 	// Removes the given node
 	du.remove = function(node) {
@@ -253,7 +253,7 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 				i--;
 			}
 		}
-		du.appendText(node, text);
+		return du.appendText(node, text);
 	};
 
 	///// CSS /////

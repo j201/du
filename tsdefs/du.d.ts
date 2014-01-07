@@ -1,16 +1,36 @@
+interface DuStatic extends Document { // TODO: clear not compatible
+	toArray<T>(arrayLike: {length: number}): T[];
+	each<T>(arrayLike: {length: number}, fn: (el: any, ...any)=>T): T[];
+	id(): HTMLElement;
+	tag(tagName: string): HTMLCollection;
+	tag(el: HTMLElement, tagName: string): HTMLCollection;
+	className(className: string): HTMLCollection;
+	className(el: HTMLElement, className: string): HTMLCollection;
+	qs(query: string): HTMLElement;
+	qs(el: HTMLElement, query: string): HTMLElement;
+	qsa(query: string): HTMLElement;
+	qsa(el: HTMLElement, query: string): HTMLElement;
+	event(type: string, listener: (e: Event, ...any)=>any): void;
+	event(target: HTMLElement, type: string, listener: (e: Event, ...any)=>any): void;
+	load(listener: (e: Event, ...any)=>any): void;
+	click(listener: (e: Event, ...any)=>any): void;
+	click(el: HTMLElement, listener: (e: Event, ...any)=>any): void;
+	rmEvent(type: string, listener: (e: Event, ...any)=>any): void;
+	rmEvent(target: HTMLElement, type: string, listener: (e: Event, ...any)=>any): void;
+	ready(listener: (e: Event, ...any)=>any): void;
+	clear(node: Node): Node[];
+	setChild<T extends Node>(node: Node, child: T): T;
+	textNode(text: string): Text;
+	appendText(node: Node, text: string): Text;
+	prepend<T extends Node>(node: Node, child: T): T;
+	remove<T extends Node>(node: T): T;
+	insertAfter<T extends Node>(node: Node, newNode: T, refNode: Node): T;
+	setText(node: Node, text: string): Text;
+	addClass(el: HTMLElement, ...string): Text;
+	rmClass(el: HTMLElement, ...string): Text;
+}
 
-declare module du {
-	function toArray<T>(arrayLike: {length: number}): T[];
-	function each<T>(arrayLike: {length: number}, fn: (el: any, ...any)=>T): T[];
-	function id(): HTMLElement;
-	function tag(tagName: string): HTMLCollection;
-	function tag(el: HTMLElement, tagName: string): HTMLCollection;
-	function className(className: string): HTMLCollection;
-	function className(el: HTMLElement, className: string): HTMLCollection;
-	function qs(query: string): HTMLElement;
-	function qs(el: HTMLElement, query: string): HTMLElement;
-	function qsa(query: string): HTMLElement;
-	function qsa(el: HTMLElement, query: string): HTMLElement;
-	function event(type: string, listener: (e: Event, ...any)=>any): void;
-	function event(target: HTMLElement, type: string, listener: (e: Event, ...any)=>any): void;
+declare var du: DuStatic; 
+declare module "du" {
+	export = du;
 }
