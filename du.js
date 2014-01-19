@@ -271,6 +271,14 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 						")\\b", "g"), '');
 	};
 
+	du.hasClass = function(el, className) {
+		var splitClassName = el.className.split(' ');
+		for (var i = 0; i < splitClassName.length; i++)
+			if (splitClassName[i] === className)
+				return true;
+		return false;
+	};
+
 	if (typeof module !== 'undefined' && module !== null && module.exports)
 		module.exports = du;
 	else if (typeof define == 'function' && typeof define.amd == 'object')

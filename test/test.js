@@ -187,6 +187,18 @@ describe('du', function() {
 			assert(!/foo/.test(div.className));
 		});
 	});
+	describe('.hasClass', function() {
+		it('should return true if a class is present', function() {
+			var div = du.id('class-test');
+			div.className = ' foo  bar ';
+			assert(du.hasClass(div, 'bar'));
+		});
+		it('should return false if a class is not present', function() {
+			var div = du.id('class-test');
+			div.className = ' foo  bar ';
+			assert(!du.hasClass(div, 'baz'));
+		});
+	});
 	
 	after(function() {
 		document.getElementById('test').innerHTML = '';
