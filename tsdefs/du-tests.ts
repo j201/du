@@ -30,3 +30,4 @@ var insertedAfter: Text = du.insertAfter(du.id('parent'), text, du.id('child'));
 var setText: Text = du.setText(id, 'baz');
 du.addClass(id, 'bar');
 du.rmClass(id, 'bar');
+var idHasClass: boolean = du.hasClass(id, 'bar');

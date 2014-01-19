@@ -29,6 +29,7 @@ interface DuStatic extends Document {
 	setText(node: Node, text: string): Text;
 	addClass(el: HTMLElement, ...string): void;
 	rmClass(el: HTMLElement, ...string): void;
+	hasClass(el: HTMLElement, className: string): boolean;
 }
 
 declare var du: DuStatic; 
