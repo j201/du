@@ -62,7 +62,7 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 	};
 
 	// Equivalent to getElementsByClassName
-	du.className = function(elOrClassName, className) {
+	du['class'] = du.className = function(elOrClassName, className) {
 		if (document.getElementsByClassName)
 			return arguments.length > 1 ?
 				elOrClassName.getElementsByClassName(className) :
