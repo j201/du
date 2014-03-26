@@ -397,9 +397,9 @@ Licensed under the MIT Licence: http://opensource.org/licenses/MIT
 			new CSSStyleDeclaration(el);
 	};
 
-	// Gets the computed value of a CSS style property
+	// Gets the computed value of a CSS style property, accepting camel-cased names
 	du.getStyle = function(el, style) {
-		return du.getComputedStyle(el).getPropertyValue(style);
+		return du.getComputedStyle(el).getPropertyValue(style.replace(/[A-Z]/g, function(c) { return '-' + c.toLowerCase(); }));
 	};
 
 	// Sets the value of a CSS style property, accepting hyphenated names

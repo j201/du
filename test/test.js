@@ -1,6 +1,8 @@
 var testDivHTML;
 
 describe('du', function() {
+	var assertEq = assert.strictEqual;
+
 	before(function() {
 		// Reset the test div if changed
 		if (!testDivHTML)
@@ -10,20 +12,20 @@ describe('du', function() {
 	});
 
 	it('should inherit or have copied over the functions from document', function() {
-		assert(du.getElementById('a') === document.getElementById('a'));
-		// assert(du.body === document.body); // Note: this always fails on IE because IE expects non-function properties of document to stay on document.
+		assertEq(du.getElementById('a'), document.getElementById('a'));
+		// assertEq(du.body, document.body); // Note: this always fails on IE because IE expects non-function properties of document to stay on document.
 	});
 	
 	describe('.toArray', function() {
 		it('should convert an array-like to an array', function() {
-			assert(Object.prototype.toString.call(du.toArray({length: 2, 0: 1, 1: 'b'})) === "[object Array]");
+			assertEq(Object.prototype.toString.call(du.toArray({length: 2, 0: 1, 1: 'b'})), "[object Array]");
 		});
 	});
 	describe('.each', function() {
 		var str = "";
 		var result = du.each({length: 2, 0: 'a', 1: 'b'}, function(el) { return str += el; });
 		it('should iterate through an array-like', function() {
-			assert(str === 'ab');
+			assertEq(str, 'ab');
 		});
 		it('should return an array of results', function() {
 			assert.deepEqual(result, ['a', 'ab']);
@@ -31,7 +33,7 @@ describe('du', function() {
 	});
 	describe('.id', function() {
 		it('should be equivalent to document.getElementById', function() {
-			assert(du.id('a') === document.getElementById('a'));
+			assertEq(du.id('a'), document.getElementById('a'));
 		});
 	});
 	describe('.tag', function() {
@@ -45,19 +47,19 @@ describe('du', function() {
 	});
 	describe('.className', function() {
 		it('should be equivalent to document.getElementsByClassName', function() {
-			assert(du.className('test-class')[1] === du.id('b'));
+			assertEq(du.className('test-class')[1], du.id('b'));
 		});
 		it('should work with elements too', function() {
 			var a = du.id('a');
-			assert(du.className(a, 'test-class')[0] === du.id('b'));
+			assertEq(du.className(a, 'test-class')[0], du.id('b'));
 		});
 	});
 	describe('.qs', function() {
 		it('should be equivalent to document.querySelector', function() {
-			assert(du.qs('#b') === du.id('b'));
+			assertEq(du.qs('#b'), du.id('b'));
 		});
 		it('should work with elements too', function() {
-			assert(du.qs(du.id('a'), '.test-class') === du.id('b'));
+			assertEq(du.qs(du.id('a'), '.test-class'), du.id('b'));
 		});
 	});
 	describe('.qsa', function() {
@@ -74,14 +76,14 @@ describe('du', function() {
 			var check = 'event not dispatched';
 			du.event('click', function() { check = 'event dispatched'; });
 			document.body.click();
-			assert(check === 'event dispatched');
+			assertEq(check, 'event dispatched');
 		});
 		it('should work on elements too', function() {
 			var a = du.id('a');
 			var check = 'event not dispatched';
 			du.event(a, 'click', function() { check = 'event dispatched'; });
 			a.click();
-			assert(check === 'event dispatched');
+			assertEq(check, 'event dispatched');
 		});
 	});
 	describe('.rmEvent', function() {
@@ -91,7 +93,7 @@ describe('du', function() {
 			du.event('click', listener);
 			du.rmEvent('click', listener);
 			document.body.click();
-			assert(check === 'event not dispatched');
+			assertEq(check, 'event not dispatched');
 		});
 		it('should work on elements too', function() {
 			var a = du.id('a');
@@ -100,7 +102,7 @@ describe('du', function() {
 			du.event('click', listener);
 			du.rmEvent('click', listener);
 			a.click();
-			assert(check === 'event not dispatched');
+			assertEq(check, 'event not dispatched');
 		});
 	});
 	// TODO: add test for .load and .ready
@@ -109,53 +111,53 @@ describe('du', function() {
 			var check = 'event not dispatched';
 			du.click(function() { check = 'event dispatched'; });
 			document.body.click();
-			assert(check === 'event dispatched');
+			assertEq(check, 'event dispatched');
 		});
 		it('should work on elements too', function() {
 			var a = du.id('a');
 			var check = 'event not dispatched';
 			du.click(a, function() { check = 'event dispatched'; });
 			a.click();
-			assert(check === 'event dispatched');
+			assertEq(check, 'event dispatched');
 		});
 	});
 	describe('.clear', function() {
 		it('should remove all child nodes', function() {
 			var div = du.id('clear-test');
 			du.clear(div);
-			assert(div.childNodes.length === 0);
+			assertEq(div.childNodes.length, 0);
 		});
 	});
 	describe('.setChild', function() {
 		it('should set the child of a node', function() {
 			var div = du.id('setChild-test');
 			du.setChild(div, document.createTextNode('test'));
-			assert(div.innerHTML === 'test');
+			assertEq(div.innerHTML, 'test');
 		});
 	});
 	describe('.textNode', function() {
 		it('should be equivalent to document.createTextNode', function() {
-			assert(du.textNode('foo').nodeValue === 'foo');
+			assertEq(du.textNode('foo').nodeValue, 'foo');
 		});
 	});
 	describe('.prepend', function() {
 		it('should prepend to a node', function() {
 			var div = du.id('prepend-test');
 			du.prepend(div, du.textNode('foo'));
-			assert(div.innerHTML === 'foobar');
+			assertEq(div.innerHTML, 'foobar');
 		});
 	});
 	describe('.append', function() {
 		it('should append to a node', function() {
 			var div = du.id('append-test');
 			du.append(div, du.textNode('foo'));
-			assert(div.innerHTML === 'barfoo');
+			assertEq(div.innerHTML, 'barfoo');
 		});
 	});
 	describe('.remove', function() {
 		it('should remove a node', function() {
 			du.remove(du.id('remove-test'));
-			assert(du.id('remove-test') === null);
+			assertEq(du.id('remove-test'), null);
 		});
 	});
 	describe('.insertAfter', function() {
@@ -163,14 +165,14 @@ describe('du', function() {
 			var div = du.id('insertAfter-test');
 			var newDiv = du.textNode('');
 			du.insertAfter(div, newDiv, du.id('insertAfter-ref'));
-			assert(div.childNodes[1] === newDiv);
+			assertEq(div.childNodes[1], newDiv);
 		});
 	});
 	describe('.setText', function() {
 		it('should set the text of a node', function() {
 			var div = du.id('setText-test');
 			du.setText(div, "bar");
-			assert(div.childNodes[1].nodeValue === 'bar');
+			assertEq(div.childNodes[1].nodeValue, 'bar');
 		});
 	});
 	describe('.addClass', function() {
@@ -197,6 +199,37 @@ describe('du', function() {
 			var div = du.id('class-test');
 			div.className = ' foo  bar ';
 			assert(!du.hasClass(div, 'baz'));
+		});
+	});
+	// Note: getComputedStyle is quite complicated, and I'm mostly trusting the polyfill implementation I'm using
+	describe('.getComputedStyle', function() {
+		it('should get a computed property with .getPropertyValue', function() {
+			var propertyValue = du.getComputedStyle(du.id("style-test")).getPropertyValue('width');
+			assertEq(typeof propertyValue, 'string');
+			assert(/px/.test(propertyValue));
+			assert(parseInt(propertyValue) > 0);
+		});
+	});
+	describe('.getStyle', function() {
+		it('should get a computed style directly', function() {
+			var div = du.id('style-test');
+			assertEq(du.getStyle(div, 'width'), du.getComputedStyle(div).getPropertyValue('width'));
+		});
+		it('should work with camel-cased properties', function() {
+			assertEq(du.getStyle(du.id('style-test'), 'maxWidth'), '1000px');
+		});
+	});
+	describe('.setStyle', function() {
+		it('should set a CSS style', function() {
+			var div = du.id('style-test');
+			var oldWidth = du.getStyle(div, 'width');
+			du.setStyle(div, 'width', parseInt(oldWidth) * 2 + 'px');
+			assertEq(du.getStyle(div, 'width'), parseInt(oldWidth) * 2 + 'px');
+		});
+		it('should work with hyphenated properties', function() {
+			var div = du.id('style-test');
+			du.setStyle(div, 'min-width', '2px');
+			assertEq(du.getStyle(div, 'min-width'), '2px');
 		});
 	});
 	

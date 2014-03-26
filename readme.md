@@ -67,6 +67,10 @@ Note: `el` as a parameter means an HTMLElement.
 **du.addClass(el, ...classes)** - Adds the given classes to an element  
 **du.rmClass(el, ...classes)** - Removes the given classes from an element
 
+**du.getComputedStyle(el)** - Equivalent to `window.getComputedStyle`, but `du.getStyle` and `du.setStyle` are probably more useful  
+**du.getStyle(el, prop)** - Returns the computed value of the CSS property `prop` on the element  
+**du.setStyle(el, prop, value)** - Sets the value of the CSS property `prop` to `value`
+
 ####Utilities
 
 **du.toArray(arrayLike)** - Converts an array-like (e.g., a NodeList) to an array
