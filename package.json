@@ -1,13 +1,13 @@
 {
 	"name": "du-dom",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "The DOM library for coders who don't need a DOM library.",
 	"main": "du.js",
 	"directories": {
 		"test": "test"
 	},
 	"scripts": {
-		"prepublish": "\"./node_modules/.bin/uglifyjs\" du.js -o du.min.js --source-map du.min.js.map --comments /©/"
+		"prepublish": "uglifyjs du.js -o du.min.js --source-map du.min.js.map --comments /©/"
 	},
 	"devDependencies": {
 		"uglify-js": "2.4.x"
