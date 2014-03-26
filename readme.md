@@ -2,7 +2,7 @@
 
 ### The DOM library for coders who don't need a DOM library.
 
-`du` (**D**OM **U**tilities) is a simple, light library that makes common DOM manipulation tasks easy by providing cross-browser helper functions. It operates on native DOM objects and doesn't force you into any major changes from a vanilla JS approach.
+`du` ( <strong>D</strong>OM <strong>U</strong>tilities) is a simple, light library that makes common DOM manipulation tasks easy by providing cross-browser helper functions. It operates on native DOM objects and doesn't force you into any major changes from a vanilla JS approach.
 
 `du` is still a work in progress with a very unstable API. Feel free to make comments and recommend changes at this time.
 
