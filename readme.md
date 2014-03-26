@@ -79,4 +79,4 @@ Note: `el` as a parameter means an HTMLElement.
 
 ---
 
-©2013 j201. Released under the [MIT License](http://opensource.org/licenses/MIT).
+©2013-2014 j201. Released under the [MIT License](http://opensource.org/licenses/MIT).
