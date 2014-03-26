@@ -29,8 +29,8 @@ Note: `el` as a parameter means an HTMLElement.
 **du.tag(tag)** - Equivalent to `document.getElementsByTagName(tag)`  
 **du.tag(el, tag)** - Equivalent to `el.getElementsByTagName(tag)`
 
-**du.className(className)** - Equivalent to `document.getElementsByClassName(className)`. `className` was used instead of `class` to avoid reserved word errors in IE8  
-**du.className(el, className)** - Equivalent to `document.getElementsByClassName(className)`
+**du.class(className) (alias: du.className)** - Equivalent to `document.getElementsByClassName(className)`. `du.className` should be used instead of `du.class` in IE8 and other non-ES5 environments.
+**du.className(el, className) (alias: du.className)** - Equivalent to `document.getElementsByClassName(className)`
 
 **du.qa(selector)** - Equivalent to `document.querySelector(selector)`  
 **du.qa(el, selector)** - Equivalent to `el.querySelector(selector)`  
